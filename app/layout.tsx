@@ -2,7 +2,7 @@ import './globals.css'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-    title: 'Pentagramma - Interactive MIDI Piano Trainer',
+    title: 'Solfeggio - Piano Trainer',
     description: 'Learn piano with real-time MIDI feedback and digital sheet music',
     manifest: '/manifest.json',
     icons: {
@@ -16,6 +16,7 @@ export const viewport = {
 }
 
 import PWAControls from '@/components/PWAControls'
+import { LanguageProvider } from '@/context/LanguageContext'
 
 export default function RootLayout({
     children,
@@ -25,8 +26,10 @@ export default function RootLayout({
     return (
         <html lang="it">
             <body>
-                {children}
-                <PWAControls />
+                <LanguageProvider>
+                    {children}
+                    <PWAControls />
+                </LanguageProvider>
             </body>
         </html>
     )

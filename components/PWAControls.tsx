@@ -1,8 +1,10 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { useTranslation } from '@/context/LanguageContext'
 
 export default function PWAControls() {
+    const { t } = useTranslation()
     const [installPrompt, setInstallPrompt] = useState<any>(null)
     const [showInstall, setShowInstall] = useState(false)
     const [showUpdate, setShowUpdate] = useState(false)
@@ -59,26 +61,26 @@ export default function PWAControls() {
     if (!showInstall && !showUpdate) return null
 
     return (
-        <div className="fixed bottom-6 right-6 z-[100] flex flex-col gap-4 items-end pointer-events-none">
+        <div className="fixed z-[100] flex flex-col gap-4 pointer-events-none w-full bottom-0 left-0 p-4 items-center md:w-auto md:bottom-6 md:right-6 md:items-end">
             {/* Container is pointer-events-none so it doesn't block clicks elsewhere, 
           but children have pointer-events-auto */}
 
             {showInstall && (
-                <div className="bg-white/90 backdrop-blur-md p-4 rounded-xl shadow-2xl border border-purple-200 pointer-events-auto max-w-sm animate-bounce">
-                    <h3 className="font-bold text-gray-900 mb-1">Installa App</h3>
-                    <p className="text-sm text-gray-600 mb-3">Scarica l'app per un'esperienza a schermo intero e offline!</p>
+                <div className="bg-white/95 backdrop-blur-md p-6 md:p-4 rounded-xl shadow-2xl border border-purple-200 pointer-events-auto w-full max-w-sm animate-in slide-in-from-bottom duration-500">
+                    <h3 className="font-bold text-gray-900 mb-1">{t('pwa.install_title')}</h3>
+                    <p className="text-sm text-gray-600 mb-3">{t('pwa.install_desc')}</p>
                     <div className="flex gap-2">
                         <button
                             onClick={() => setShowInstall(false)}
                             className="flex-1 px-3 py-2 text-sm text-gray-500 hover:text-gray-700 transition"
                         >
-                            Più tardi
+                            {t('pwa.later')}
                         </button>
                         <button
                             onClick={handleInstall}
                             className="flex-1 bg-gradient-to-r from-purple-600 to-indigo-600 text-white px-4 py-2 rounded-lg font-bold shadow-md hover:shadow-lg transition transform hover:scale-105"
                         >
-                            Scarica
+                            {t('pwa.download')}
                         </button>
                     </div>
                 </div>
@@ -88,15 +90,15 @@ export default function PWAControls() {
                 <div className="bg-blue-600/95 backdrop-blur-md p-4 rounded-xl shadow-xl text-white pointer-events-auto max-w-sm">
                     <div className="flex items-center gap-3">
                         <div className="flex-1">
-                            <h3 className="font-bold text-white mb-1">Aggiornamento Disponibile</h3>
-                            <p className="text-xs text-blue-100">Nuovi contenuti e miglioramenti pronti.</p>
+                            <h3 className="font-bold text-white mb-1">{t('pwa.update_title')}</h3>
+                            <p className="text-xs text-blue-100">{t('pwa.update_desc')}</p>
                         </div>
                     </div>
                     <button
                         onClick={handleUpdate}
                         className="mt-3 w-full bg-white text-blue-600 px-4 py-2 rounded-lg font-bold hover:bg-blue-50 transition shadow-inner"
                     >
-                        Aggiorna Ora
+                        {t('pwa.update_btn')}
                     </button>
                 </div>
             )}
