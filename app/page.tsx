@@ -36,7 +36,7 @@ export default function RhythmPage() {
     const [includeRests, setIncludeRests] = useState(false);
 
     // VISUAL MODE
-    const [visualMode, setVisualMode] = useState<'scrolling' | 'static'>('scrolling');
+    const [visualMode, setVisualMode] = useState<'scrolling' | 'static'>('static');
 
     // Audio Settings
     const [isMetronomeEnabled, setIsMetronomeEnabled] = useState(true);
